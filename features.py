@@ -1,18 +1,18 @@
 def no_paths(draw: list[list[int]])-> int:
     """
-    It calculate the number of lines to draw the shape
+    It calculates the number of lines to draw the shape
     """
     return len(draw)
 
 def no_points(draw: list[list[int]])-> int:
     """
-    It calculate the number of points to draw the shape
+    It calculates the number of points to draw the shape
     """
     return sum([len(l) for l in draw])
 
 def width(draw: list[list[int]])-> int:
     """
-    It calculate the width of the shape
+    It calculates the width of the shape
     """
     maxi, mini = 0, 0
     for i in range(no_paths(draw)):
@@ -22,7 +22,7 @@ def width(draw: list[list[int]])-> int:
 
 def height(draw)-> int:
     """
-    It calculate the height of the shape
+    It calculates the height of the shape
     """
     for i in range(no_paths(draw)):
         maxi = max(max([l[1] for l in draw[i]]), maxi)
@@ -50,4 +50,3 @@ def triangle_area(A,B,C):
     c = distance(C,A)
     p = (a+b+c)/2
     return (p*(p-a)(p-b)(p-c))**.5
-
