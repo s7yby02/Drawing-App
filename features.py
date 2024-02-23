@@ -1,24 +1,33 @@
-def no_paths(draw):
+def no_paths(draw: list[list[int]])-> int:
+    """
+    It calculate the number of lines to draw the shape
+    """
     return len(draw)
 
-def no_points(draw):
+def no_points(draw: list[list[int]])-> int:
+    """
+    It calculate the number of points to draw the shape
+    """
     return sum([len(l) for l in draw])
 
-def width(draw):
-    w=0
+def width(draw: list[list[int]])-> int:
+    """
+    It calculate the width of the shape
+    """
+    maxi, mini = 0, 0
     for i in range(no_paths(draw)):
-        width = max([l[0] for l in draw[i]]) - min([l[0] for l in draw[i]])
-        if width > w:
-            w = width
-    return w
+        maxi = max(max([l[0] for l in draw[i]]), maxi)
+        mini = min(max([l[0] for l in draw[i]]), mini)
+    return maxi - mini
 
-def height(draw):
-    h=0
+def height(draw)-> int:
+    """
+    It calculate the height of the shape
+    """
     for i in range(no_paths(draw)):
-        height = max([l[1] for l in draw[i]]) - min([l[1] for l in draw[i]])
-        if height > h:
-            h = height
-    return h
+        maxi = max(max([l[1] for l in draw[i]]), maxi)
+        mini = min(max([l[1] for l in draw[i]]), mini)
+    return maxi - mini
 
 def elongation(draw):
     w, h = width(draw), height(draw)
