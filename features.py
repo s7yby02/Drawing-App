@@ -20,7 +20,7 @@ def width(draw: list[list[int]])-> int:
         mini = min(max([l[0] for l in draw[i]]), mini)
     return maxi - mini
 
-def height(draw)-> int:
+def height(draw: list[list[int]])-> int:
     """
     It calculates the height of the shape
     """
