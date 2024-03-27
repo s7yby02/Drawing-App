@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drawing App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <div class="content">
+        <h1>Drawing app</h1>
+        <div id="sketchpadContainer">
+            
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        const sketchpad = new Sketchpad(sketchpadContainer);// sketchpadContainer is being used as a variable, not a string. 
+        //When you use an id directly as a variable in JavaScript, it refers to the DOM element with that id.
+    </script>
 </body>
 </html>
