@@ -17,6 +17,7 @@ class Sketchpad {
         this.clrs = false;
     }
     #addEventListeners(){
+        ///////Mouse events listeners////////
         this.canvas.onmousedown = (evt) =>{
             const point = this.#getPoint(evt);
             // console.log(point);
@@ -40,6 +41,18 @@ class Sketchpad {
             // const lastPath = this.paths[this.len - 1];
             // console.log('last path: ', lastPath);
             // console.log('paths: ', this.paths);
+        }
+        ///////Touch events listeners////////
+        this.canvas.ontouchstart = (evt)=>{
+            const loc = evt.touches[0];
+            this.canvas.onmousedown(loc);
+        }
+        this.canvas.ontouchmove = (evt)=>{
+            const loc = evt.touches[0];
+            this.canvas.onmousemove(loc);
+        }
+        this.canvas.ontouchend = ()=>{
+            this.canvas.onmouseup();
         }
     }
     #getPoint(evt){
