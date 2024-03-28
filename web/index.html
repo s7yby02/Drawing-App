@@ -32,41 +32,50 @@
         const undoButton = document.getElementById('undo');
         const clearButton = document.getElementById('clear');
         const colorsButton = document.getElementById('colors');
+        const predictButton = document.getElementById('predict');
         let clicked = false;
-
+        //////////UNDOOOOOOO////////////////
         undoButton.addEventListener('click',()=>{
             sketchpad.undo();
-            colorbttn(colorsButton);
+            if(!sketchpad.len){
+                movebttn(colorsButton);
+                sketchpad.clrs = false;
+            }
         });
+        //////////////CLEAAAR/////////
         clearButton.addEventListener('click', ()=>{
             sketchpad.clear();
-            colorbttn(colorsButton);
+            movebttn(colorsButton);
+            sketchpad.clrs = false;
         });
+        ////////////COLOOOOOOR//////////
         colorsButton.addEventListener('click', ()=>{
-            colorbttn(colorsButton);
+            movebttn(colorsButton);
             sketchpad.colorize();
         })
-
+        ///////////PREEEDIICT////////
+        predictButton.addEventListener('click', ()=>{
+            console.log(sketchpad.paths);
+            const data = JSON.stringify(sketchpad.paths);
+            console.log(data);
+            console.log("number of paths in this draw : ", sketchpad.len);
+        })
     </script>
     <script>
-        function colorbttn(colorsButton) {
-                if(sketchpad.len){
-                    clicked = !clicked;
-                    if(clicked){
-                        colorsButton.style = `
-                            top: 4px;
-                        `
-                    }else{
-                        colorsButton.style = `
-                            top: 0px;
-                        `
-                    }
-                }else{
-                    colorsButton.style = `
-                            top: 0px;
-                        `
+        function movebttn(Buttonn) {
+            if(sketchpad.len && !clicked){
+                Buttonn.style = `
+                    top: 4px;
+                `
+                clicked = true;
+            }else{
+                    Buttonn.style = `
+                        top: 0px;
+                    `
+                    clicked = false;
                 }
-            }
+
+        }
     </script>
 </body>
 </html>

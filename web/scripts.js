@@ -31,15 +31,15 @@ class Sketchpad {
                 const point = this.#getPoint(evt);
                 const lastPath = this.paths[this.len - 1];
                 lastPath.push(point);
+                // this.clrs = false;
                 this.#draw(this.ctx ,lastPath);
-                this.clrs = false;
             }
         }
         this.canvas.onmouseup = () =>{
             this.isDrawing = false;            
-            const lastPath = this.paths[this.len - 1];
-            console.log('last path: ', lastPath);
-            console.log('paths: ', this.paths);
+            // const lastPath = this.paths[this.len - 1];
+            // console.log('last path: ', lastPath);
+            // console.log('paths: ', this.paths);
         }
     }
     #getPoint(evt){
@@ -52,6 +52,7 @@ class Sketchpad {
         }else{
             ctx.strokeStyle = "black";
         }
+        // console.log("colorstyle after #draw() method: ", ctx.strokeStyle);
         ctx.lineWidth = 5;
         ctx.lineCap="round";
         ctx.lineJoin="round";
@@ -79,7 +80,7 @@ class Sketchpad {
         this.paths = [];
         this.len = 0;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        console.log("paths after clear:", this.paths);
+        // console.log("paths after clear:", this.paths);
     }
     #getRandomColor() {
         const r = Math.floor(Math.random() * 256);  // Random between 0-255
@@ -95,5 +96,6 @@ class Sketchpad {
                 this.#draw(this.ctx, path);
             }
         }
+        console.log("colorstryke after colorize() method",this.ctx.strokeStyle);
     }
 }
