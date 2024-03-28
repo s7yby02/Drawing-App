@@ -9,39 +9,91 @@ class Sketchpad {
         `;
         element.appendChild(this.canvas);
 
-        this.#addEventListeners();
         this.paths = [];
         this.isDrawing = false;
         this.len =  this.paths.length;
+        this.#addEventListeners();
+        this.ctx = this.canvas.getContext('2d');
+        this.clrs = false;
     }
     #addEventListeners(){
-        this.canvas.onmousedown = (evt)=>{
+        this.canvas.onmousedown = (evt) =>{
             const point = this.#getPoint(evt);
             // console.log(point);
-            const path = [];  
+            const path = [];
             path.push(point);
             this.paths.push(path);
             this.len++;
             this.isDrawing = true;
-            // console.log(this.paths, this.paths.length);
         }
         this.canvas.onmousemove = (evt) =>{
             if(this.isDrawing){
                 const point = this.#getPoint(evt);
                 const lastPath = this.paths[this.len - 1];
                 lastPath.push(point);
+                this.#draw(this.ctx ,lastPath);
+                this.clrs = false;
             }
         }
         this.canvas.onmouseup = () =>{
             this.isDrawing = false;            
-            // const lastPath = this.paths[this.len - 1];
-            // console.log('last path: ', lastPath);
-            // console.log('paths: ', this.paths);
+            const lastPath = this.paths[this.len - 1];
+            console.log('last path: ', lastPath);
+            console.log('paths: ', this.paths);
         }
     }
     #getPoint(evt){
         const rect = this.canvas.getBoundingClientRect();// give the position of the canvas relative to the viewport
         return [Math.floor(evt.clientX - rect.left), Math.floor(evt.clientY - rect.top)];
     }
-    
+    #draw(ctx, path){
+        if(this.clrs){
+            ctx.strokeStyle = this.#getRandomColor();
+        }else{
+            ctx.strokeStyle = "black";
+        }
+        ctx.lineWidth = 5;
+        ctx.lineCap="round";
+        ctx.lineJoin="round";
+        ctx.beginPath();
+        for(let i =1; i< path.length; i++){
+            const from = path[i - 1];
+            const to = path[i];
+            ctx.moveTo(from[0], from[1]);
+            ctx.lineTo(to[0], to[1]);
+        }
+        ctx.stroke();
+    }
+    undo(){
+        if(this.len ){    
+            this.paths.pop();
+            this.len--;
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            for(let path of this.paths){
+                this.#draw(this.ctx, path);
+            }
+            console.log("paths after pop:", this.paths);
+        }else{console.log("nothing to undo");}
+    }
+    clear(){
+        this.paths = [];
+        this.len = 0;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        console.log("paths after clear:", this.paths);
+    }
+    #getRandomColor() {
+        const r = Math.floor(Math.random() * 256);  // Random between 0-255
+        const g = Math.floor(Math.random() * 256);  // Random between 0-255
+        const b = Math.floor(Math.random() * 256);  // Random between 0-255
+        return 'rgb(' + r + ',' + g + ',' + b + ')';  // Collect all to a string
+    }
+    colorize(){
+        if(this.len){
+            this.clrs = !this.clrs;
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            for(let path of this.paths){
+                this.#draw(this.ctx, path);
+            }
+        }
+    }
 }

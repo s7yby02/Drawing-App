@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drawing App</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="content">
@@ -12,12 +15,58 @@
         <div id="sketchpadContainer">
             
         </div>
+        <div class="buttons">
+            <button id="undo">undo</button>
+            <button id="clear">clear</button>
+            <button id="colors">colors</button>
+            <!-- <button id="erase">erase</button> -->
+            <button id="predict">predict</button>
+        </div>
     </div>
 
     <script src="scripts.js"></script>
     <script>
         const sketchpad = new Sketchpad(sketchpadContainer);// sketchpadContainer is being used as a variable, not a string. 
         //When you use an id directly as a variable in JavaScript, it refers to the DOM element with that id.
+        
+        const undoButton = document.getElementById('undo');
+        const clearButton = document.getElementById('clear');
+        const colorsButton = document.getElementById('colors');
+        let clicked = false;
+
+        undoButton.addEventListener('click',()=>{
+            sketchpad.undo();
+            colorbttn(colorsButton);
+        });
+        clearButton.addEventListener('click', ()=>{
+            sketchpad.clear();
+            colorbttn(colorsButton);
+        });
+        colorsButton.addEventListener('click', ()=>{
+            colorbttn(colorsButton);
+            sketchpad.colorize();
+        })
+
+    </script>
+    <script>
+        function colorbttn(colorsButton) {
+                if(sketchpad.len){
+                    clicked = !clicked;
+                    if(clicked){
+                        colorsButton.style = `
+                            top: 4px;
+                        `
+                    }else{
+                        colorsButton.style = `
+                            top: 0px;
+                        `
+                    }
+                }else{
+                    colorsButton.style = `
+                            top: 0px;
+                        `
+                }
+            }
     </script>
 </body>
 </html>
