@@ -36,7 +36,7 @@ class Sketchpad {
                 this.#draw(this.ctx ,lastPath);
             }
         }
-        this.canvas.onmouseup = () =>{
+        document.onmouseup = () =>{
             this.isDrawing = false;            
             // const lastPath = this.paths[this.len - 1];
             // console.log('last path: ', lastPath);
@@ -51,7 +51,7 @@ class Sketchpad {
             const loc = evt.touches[0];
             this.canvas.onmousemove(loc);
         }
-        this.canvas.ontouchend = ()=>{
+        document.ontouchend = ()=>{
             this.canvas.onmouseup();
         }
     }
