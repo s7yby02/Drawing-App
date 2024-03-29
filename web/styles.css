@@ -1,9 +1,20 @@
 body {
-    background-color: aqua;
+    /* background-color: aqua; */
     font-family: "Edu NSW ACT Foundation", cursive;
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
+    background-image: url(../back2.jpg);
+    background-size: 105%;
+    overscroll-behavior: none;   
+}
+
+@media (max-width: 500px) {
+    body {
+        background-size: 126%;
+        /* background-repeat: no-repeat; */
+        background-image: url(../back2vertical.jpg);
+    }
 }
 
 .content {
@@ -15,7 +26,21 @@ body {
     text-align: center;
     
 }
-
+.content h1 {
+    color: #333;  /* Dark gray color */
+    font-size: 2em;  /* 2.5 times the base font size */
+    text-align: center;  /* Center the text */
+    margin-bottom: 20px;  /* Add some space below the heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Add a shadow to the text */
+    text-transform: uppercase; 
+    letter-spacing: 3px;
+}
+.content h1:hover {
+    transform: scale(1.1);  /* Enlarge the text when hovered */
+    transition: transform 0.3s ;  /* Animate the transformation */
+    cursor: pointer;
+    
+}
 button {
 padding: 0.6em 2em;
 border: none;
@@ -30,6 +55,8 @@ user-select: none;
 -webkit-user-select: none;
 touch-action: manipulation;
 margin-top: 5px;
+text-transform: uppercase; 
+font-size: 0.8em;
 }
 
 button:before {
