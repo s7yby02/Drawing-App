@@ -1,0 +1,121 @@
+body {
+    /* background-color: aqua; */
+    font-family: "Edu NSW ACT Foundation", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    background-image: url(back2.jpg);
+    background-size: 105%;
+    overscroll-behavior: none;   
+}
+
+@media (max-width: 500px) {
+    body {
+        background-size: 126%;
+        /* background-repeat: no-repeat; */
+        background-image: url(back2vertical.jpg);
+    }
+}
+
+.content {
+    /* border: 1px solid black; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+}
+.content h1 {
+    color: #333;  /* Dark gray color */
+    font-size: 2em;  /* 2.5 times the base font size */
+    text-align: center;  /* Center the text */
+    margin-bottom: 20px;  /* Add some space below the heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Add a shadow to the text */
+    text-transform: uppercase; 
+    letter-spacing: 3px;
+}
+.content h1:hover {
+    transform: scale(1.1);  /* Enlarge the text when hovered */
+    transition: transform 0.3s ;  /* Animate the transformation */
+    cursor: pointer;
+    
+}
+button {
+padding: 0.6em 2em;
+border: none;
+outline: none;
+color: rgb(255, 255, 255);
+/* background: #111; */
+cursor: pointer;
+position: relative;
+z-index: 0;
+border-radius: 10px;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+margin-top: 5px;
+text-transform: uppercase; 
+font-size: 0.8em;
+}
+
+button:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+button:hover:after {
+    opacity: 0.6; /* Make gradient slightly more visible on hover */
+}
+    
+    /* Active effect (while button is pressed) */
+button:active:after {
+    background: #333;  /*Even darker background when pressed*/
+    top: 2px;          /* Subtle downward shift effect when pressed */
+}
+
+button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
