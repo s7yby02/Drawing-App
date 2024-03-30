@@ -93,7 +93,7 @@ class Sketchpad {
             for(let path of this.paths){
                 this.#draw(this.ctx, path);
             }
-            console.log("paths after pop:", this.paths);
+            // console.log("paths after pop:", this.paths);
         }else{console.log("nothing to undo");}
     }
     clear(){

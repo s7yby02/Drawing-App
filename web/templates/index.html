@@ -12,6 +12,9 @@
 <body>
     <div class="content">
         <h1>Drawing app</h1>
+        <div id="prediction">
+            <!-- <h2>ddd</h1> -->
+        </div>
         <div id="sketchpadContainer">
             
         </div>
@@ -34,6 +37,7 @@
         const colorsButton = document.getElementById('colors');
         const predictButton = document.getElementById('predict');
         let clicked = false;
+        let predvalue = false;
         //////////UNDOOOOOOO////////////////
         undoButton.addEventListener('click',()=>{
             sketchpad.undo();
@@ -41,12 +45,20 @@
                 movebttn(colorsButton);
                 sketchpad.clrs = false;
             }
+            if(predvalue){
+                removeprediction();
+                predvalue = false;
+            }
         });
         //////////////CLEAAAR/////////
         clearButton.addEventListener('click', ()=>{
             sketchpad.clear();
             movebttn(colorsButton);
             sketchpad.clrs = false;
+            if(predvalue){
+                removeprediction();
+                predvalue = false;
+            }
         });
         ////////////COLOOOOOOR//////////
         colorsButton.addEventListener('click', ()=>{
@@ -59,10 +71,10 @@
             //const data = JSON.stringify(sketchpad.paths);
             //console.log(data);
             //console.log("number of paths in this draw : ", sketchpad.len);
-            console.log("PRedict button is clicked");
+            // console.log("PRedict button is clicked");
             if(sketchpad.len){
                 const screenshot = sketchpad.canvas.toDataURL();
-                console.log(screenshot);
+                // console.log(screenshot);
                 // Convert the data URL to a Blob
                 const screenshotBlob = await (await fetch(screenshot)).blob();
 
@@ -76,8 +88,14 @@
                     body: formData
                 }).then(response => response.json()).then(data => {
                     // Handle the prediction result
-                    console.log(data);
-                    // sketchpad.clear();
+                    // console.log(data);
+                    const divprediction = document.getElementById('prediction');
+                    const h2 = document.createElement('h2');
+                    h2.textContent = data.prediction;
+                    if(!predvalue){
+                        divprediction.appendChild(h2);
+                        predvalue = true;    
+                    }
                 });
             }
         })
@@ -95,7 +113,14 @@
                     `
                     clicked = false;
                 }
+        }
+        function removeprediction() {
+            const predictionDiv = document.getElementById('prediction');
 
+            // Remove all child elements of the div
+            while (predictionDiv.firstChild) {
+                predictionDiv.removeChild(predictionDiv.firstChild);
+            }
         }
     </script>
 </body>

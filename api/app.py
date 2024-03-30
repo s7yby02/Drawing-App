@@ -12,7 +12,7 @@ app = FastAPI()
 async def hello_model():
     return {"Hello": "CNN model for drawing application"}
 
-model = load_model('../DL_approach/the model')
+model = load_model('he model')
 
 @app.post('/predict')
 async def predict(file: UploadFile = File(...)):
