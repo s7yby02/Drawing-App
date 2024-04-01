@@ -5,6 +5,7 @@
 - ### [Team Members](#team-members)
 - ### [Overview](#overview)
 - ### [Technologies Used](#technologies-used)
+- ### [Data Mining Process](#data-mining-process)
 
 ### Team Members
 - [ASKRI Aymane](https://github.com/Ayasgo)
@@ -30,6 +31,11 @@ The app is built using Flask python framework for the backend and HTML, CSS, and
    <center> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe3XOWFt0Dz3-UsPhsl6LywSb1tFhx8cInE4y9vZww2w&s" alt="Spring Boot" width="300" height="100"></center>
      
    *Flask* is a lightweight WSGI web application framework in Python. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
+
+   - **Docker**
+   <center><img src="https://www.zadara.com/wp-content/uploads/docker.png" alt="FastApi" width="200" height="150" ></center>
+
+   ***Docker*** is a set of platform-as-a-service (PaaS) products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries, and configuration files; they can communicate with each other through well-defined channels. All containers are run by a single operating system kernel and are thus more lightweight than virtual machines. Containers are created from images that specify their precise contents. Images are often created by combining and modifying standard images downloaded from public repositories.
 - ### AI model 
    - **Jupyter Notebook**
    
@@ -48,12 +54,45 @@ The app is built using Flask python framework for the backend and HTML, CSS, and
 
       ***FastAPI*** is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. It is inspired by APIStar, but it is not a fork. It is designed to be high-performance, asynchronous, and ready to serve production workloads. It is powered by Starlette and Pydantic. It is a class-based API framework that is built on top of Starlette, which is a lightweight ASGI framework/toolkit. It is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. It is inspired by APIStar, but it is not a fork. It is designed to be high-performance, asynchronous, and ready to serve production workloads. It is powered by Starlette and Pydantic. It is a class-based API framework that is built on top of Starlette, which is a lightweight ASGI framework/toolkit.
 
-   - **Docker**
-      <center><img src="https://www.zadara.com/wp-content/uploads/docker.png" alt="FastApi" width="200" height="150" ></center>
-
-      ***Docker*** is a set of platform-as-a-service (PaaS) products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries, and configuration files; they can communicate with each other through well-defined channels. All containers are run by a single operating system kernel and are thus more lightweight than virtual machines. Containers are created from images that specify their precise contents. Images are often created by combining and modifying standard images downloaded from public repositories.
-
 ## Data Mining Process
+- ### Data Selection
+   We utilized a dataset of hand-drawn shapes, which was created by a YouTuber who asked his followers to sketch eight different shapes for him. The collected data was then stored in the form of JSON files.
+- ### Data Understanding
+   The dataset consists of 8 classes: `car, fish, house, tree, bicycle, guitar, pencil, clock`. Each class contains a set of drawings, where each drawing is represented by a list of strokes. Each stroke is a list of points, where each point is a list of two values representing the x and y coordinates of the point.
+
+   So the dataset is structured as follows:
+   ```json
+   {
+      "session": 1663053145814,
+      "student": "Aymane",
+      "drawings": {
+         "car": [
+            [
+               [x11, y11],
+               [x12, y12],
+               ...
+            ],
+            [
+               [x21, y21],
+               [x22, y22],
+               ...
+            ],
+            ...
+         ],
+         "fish": [
+            ...
+         ],
+         ...
+      }
+   }
+   ```
+   The session and the name attributes are just for identification purposes, while the drawings attribute contains the actual data.
+- ### Data Preparation
+   In this section, we prepared the data so that we can use it easily in the cleaning and preprocessing steps and building the models at the end. 
+
+   We first loaded the data from the JSON files and then eliminated the unnecessary attributes: **name attribute**and modifying the **session attribute**. All that is well structured and explained in the `data_preparation.ipynb` notebook.
+
+   After that, in the `data_cleaning.ipynb` notebook, we cleaned the data by removing the drawings that are wrongs and doesn't match its class. 
 
 
 ## Installation
