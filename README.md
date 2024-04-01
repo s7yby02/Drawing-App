@@ -15,6 +15,9 @@
   - [Data Preparation](#data-preparation)
    - [Feature Engineering](#feature-engineering)
    - [Model Building & evaluation](#model-building--evaluation)
+- [Installation](#installation)
+   - [The API](#the-api)
+   - [The Web App](#the-web-app)
 
 ### Team Members
 - [ASKRI Aymane](https://github.com/Ayasgo)
@@ -71,12 +74,14 @@ Drawing-App
 │ │ │ scripts.js
 | └───the model # the deep learning model that we have trained
 │ │ main.py
+│ │ requirements.txt # the dependencies of the web app
 └───api
 │ │ app.py
 │ └───the model # the deep learning model that we have trained
+│ │ requirements.txt # the dependencies of just the api without backend and frontend 
 │ README.md
 ```
-### NB. Each folder or file that is not mentioned in the structure is not important for the understanding of the project.
+   ### NB. Each folder or file that is not mentioned in the structure is not important for the understanding of the project.
 
 ## Used Technologies
 - ### Front End
@@ -92,10 +97,6 @@ Drawing-App
      
    *Flask* is a lightweight WSGI web application framework in Python. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
-   - **Docker**
-   <center><img src="https://www.zadara.com/wp-content/uploads/docker.png" alt="FastApi" width="200" height="150" ></center>
-
-   ***Docker*** is a set of platform-as-a-service (PaaS) products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries, and configuration files; they can communicate with each other through well-defined channels. All containers are run by a single operating system kernel and are thus more lightweight than virtual machines. Containers are created from images that specify their precise contents. Images are often created by combining and modifying standard images downloaded from public repositories.
 - ### AI model 
    - **Jupyter Notebook**
    
@@ -181,11 +182,50 @@ Drawing-App
 
 
 ## Installation
+The project is divided into two parts: **the API** and **the Web App** in case you want to test just the API without the frontend and the backend. The API is used to predict the drawings and the Web App is used to draw the shapes and see the predictions. 
 
-1. Clone the repository:
+The API is built using FastAPI and the Web App is built using Flask.
+
+First, you need to clone the repository:
 
    ```bash
    git clone https://github.com/s7yby02/Drawing-App.git
    ```
 
+- ### The API
+   To install the API, you need to install the dependencies first. You can do this by running the following command:
 
+   ```bash
+   cd Drawing-App/api
+   pip install -r requirements.txt
+   ```
+
+   After installing the dependencies, you can run the API by running the following command:
+
+   ```bash
+   uvicorn app:app --reload
+   ```
+
+   The API will be running on `http://127.0.0.1:8000`.
+
+- ### The Web App
+   To install the Web App, you need to install the dependencies first. You can do this by running the following command:
+
+   ```bash
+   cd Drawing-App/web
+   pip install -r requirements.txt
+   ```
+
+   After installing the dependencies, you can run the Web App by running the following command:
+
+   ```bash
+   python main.py
+   ```
+
+   The Web App will be running on `http://127.0.0.1:5000`.
+
+   You can now draw the shapes and see the predictions.
+
+- ## Quick Demo
+   Here is a quick demo of the Web App:
+   

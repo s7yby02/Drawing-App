@@ -1,0 +1,6 @@
+fastapi==0.104.1
+uvicorn==0.24.0.post1
+opencv-python==4.8.1.78
+tensorflow==2.15.0
+Pillow==9.2.0
+numpy==1.26.0
