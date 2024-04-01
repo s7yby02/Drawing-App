@@ -18,6 +18,7 @@
 - [Installation](#installation)
    - [The API](#the-api)
    - [The Web App](#the-web-app)
+- [Quick Demo](#quick-demo)
 
 ### Team Members
 - [ASKRI Aymane](https://github.com/Ayasgo)
