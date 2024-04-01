@@ -2,10 +2,19 @@
 ## <center> Data Mining Project </center>
 
 ## Table of Contents
-- ### [Team Members](#team-members)
-- ### [Overview](#overview)
-- ### [Technologies Used](#technologies-used)
-- ### [Data Mining Process](#data-mining-process)
+- [Team Members](#team-members)
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Used Technologies](#used-technologies)
+  - [Front End](#front-end)
+  - [BackEnd](#backend)
+  - [AI model](#ai-model)
+- [Data Mining Process](#data-mining-process)
+  - [Data Selection](#data-selection)
+  - [Data Understanding](#data-understanding)
+  - [Data Preparation](#data-preparation)
+   - [Feature Engineering](#feature-engineering)
+   - [Model Building & evaluation](#model-building--evaluation)
 
 ### Team Members
 - [ASKRI Aymane](https://github.com/Ayasgo)
@@ -17,6 +26,57 @@ This is a project that consists of building a web application where you can draw
 We used the famous pre-trained model called **[MobileNetV2]("https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4")** that we have re-trained using our own dataset (`Tranfert learning technique`) that consists of drawings of 8 shapes: `car, fish, house, tree, bicycle, guitar, pencil, clock` in the format of JSON files that contains the strokes of the drawings(`the coordinates of the points that the user has drawn`).
 
 The app is built using Flask python framework for the backend and HTML, CSS, and JavaScript for the frontend.
+
+### Project Structure
+The project is structured as follows:
+```bash	
+Drawing-App
+│
+└──ML_approach
+│ │ Data_preparation.ipynb
+│ │ Data_cleaning.ipynb
+│ │ Feature_Extraction.ipynb
+│ │ features.py
+│ │ Model.ipynb
+└──DL_approach
+│ │ Data_preprocessing.ipynb
+│ └──the model # the deep learning model that we have trained
+└──data # the original dataset
+│ │ 
+│ └───raw
+│ │ │ 1663053145814.json #the files that contains the drawings
+│ │ │ ...
+└──newdata # the dataset after the data preparation
+│ │
+│ └───json
+│ │ │ 0.json # the dataset in json format after preparing it
+│ │ │ ...
+│ │
+│ └───csv
+│ │ │ data.csv # the dataset in csv format after extracting the features
+│ │ 
+│ └───imgs
+│ │ │ 0_bicycle.png # the images that we have created from the drawings
+│ │ │ ...
+│ │
+│ └───resized_clean_imgs_crop # the images that we have created from the drawings after cleaning them
+│ │ │ 0_bicycle.png
+│ │ │ ...
+└──web
+│ │
+│ └───templates
+│ │ │ index.html
+│ └───static
+│ │ │ styles.css
+│ │ │ scripts.js
+| └───the model # the deep learning model that we have trained
+│ │ main.py
+└───api
+│ │ app.py
+│ └───the model # the deep learning model that we have trained
+│ README.md
+```
+### NB. Each folder or file that is not mentioned in the structure is not important for the understanding of the project.
 
 ## Used Technologies
 - ### Front End
@@ -61,7 +121,7 @@ The app is built using Flask python framework for the backend and HTML, CSS, and
    The dataset consists of 8 classes: `car, fish, house, tree, bicycle, guitar, pencil, clock`. Each class contains a set of drawings, where each drawing is represented by a list of strokes. Each stroke is a list of points, where each point is a list of two values representing the x and y coordinates of the point.
 
    So the dataset is structured as follows:
-   ```json
+   ```bash
    {
       "session": 1663053145814,
       "student": "Aymane",
@@ -88,11 +148,36 @@ The app is built using Flask python framework for the backend and HTML, CSS, and
    ```
    The session and the name attributes are just for identification purposes, while the drawings attribute contains the actual data.
 - ### Data Preparation
-   In this section, we prepared the data so that we can use it easily in the cleaning and preprocessing steps and building the models at the end. 
+   In this section, we prepared the data so that we can use it easily in the cleaning and preprocessing steps and when building the models at the end. 
 
-   We first loaded the data from the JSON files and then eliminated the unnecessary attributes: **name attribute**and modifying the **session attribute**. All that is well structured and explained in the `data_preparation.ipynb` notebook.
+   We first loaded the data from the JSON files and then eliminated the unnecessary attributes: **name attribute**and modifying the **session attribute**. All that is well structured and explained in the `data_preparation.ipynb` notebook inside the `ML_approach` folder.
 
    After that, in the `data_cleaning.ipynb` notebook, we cleaned the data by removing the drawings that are wrongs and doesn't match its class. 
+- ### Feature Engineering
+   In this section, given that we have raw JSON data, it was necessary for us to identify and extract features that would assist us in distinguishing between classes. This was done with the aim of constructing the model from this data independently.
+
+   These are the features that we extracted from the raw data:
+   - **Point Count**: The total count of points required to draw the shape.
+   - **Path Count**: The total number of lines required to draw the shape.
+   - **width**: The horizontal dimension of the shape.
+   - **height**: The vertical dimension of the shape.
+   - **elongation**: The extent to which a shape stretches in one direction compared to its orthogonal direction.
+   - **roundness**: The degree to which the shape of an object resembles a perfectly round circle.
+   - **area**: The total space enclosed within the shape.
+
+   The feature engineering process is done in the `Feature_Extraction.ipynb` notebook and all the features extractor functions are in the `features.py` file.
+
+- ### Model Building & evaluation
+   In this section, we tried different Machine Learning models to predict the drawings. We used the extracted features to train the models. We tried different models like `Random Forest, Decision Tree, KNN, SVM and Logistic Regression`. 
+   
+   The model was built and trained in the `model_building.ipynb` notebook.
+
+   Despite our efforts in training the models, we were unable to achieve satisfactory accuracy (not exceeding 61%). As a result, we opted for a **Deep Learning Approach** over basic Machine learning models. 
+   
+   Specifically, we utilized a pre-existing model known as `MobileNetV2`, which we retrained with our unique dataset (we converted the JSON files into image plots and saved these plots as images). The retraining of the model was accomplished using the `Transfer Learning` technique.
+
+   All the process is well explained in the `Data_preprocessing.ipynb` notebook inside the `DL_approach` folder.
+
 
 
 ## Installation
@@ -100,6 +185,7 @@ The app is built using Flask python framework for the backend and HTML, CSS, and
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/s7yby02/Drawing-App.git
+   ```
 
 
