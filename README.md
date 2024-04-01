@@ -4,6 +4,8 @@
 ## Table of Contents
 - [Team Members](#team-members)
 - [Overview](#overview)
+- [Project Architecture](#project-architecture)
+- [Quick Demo](#quick-demo)
 - [Project Structure](#project-structure)
 - [Used Technologies](#used-technologies)
   - [Front End](#front-end)
@@ -18,7 +20,6 @@
 - [Installation](#installation)
    - [The API](#the-api)
    - [The Web App](#the-web-app)
-- [Quick Demo](#quick-demo)
 
 ### Team Members
 - [ASKRI Aymane](https://github.com/Ayasgo)
@@ -30,6 +31,14 @@ This is a project that consists of building a web application where you can draw
 We used the famous pre-trained model called **[MobileNetV2]("https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4")** that we have re-trained using our own dataset (`Tranfert learning technique`) that consists of drawings of 8 shapes: `car, fish, house, tree, bicycle, guitar, pencil, clock` in the format of JSON files that contains the strokes of the drawings(`the coordinates of the points that the user has drawn`).
 
 The app is built using Flask python framework for the backend and HTML, CSS, and JavaScript for the frontend.
+
+### Project Architecture
+
+   ![App architecture](imgs_for_notebooks/architecture.gif)
+
+### Quick Demo
+#### Here is a quick demo of the Web App:
+   ![App demo](imgs_for_notebooks/demo.gif)
 
 ### Project Structure
 The project is structured as follows:
@@ -94,7 +103,7 @@ Drawing-App
 - ### BackEnd 
   - **Flask**
 
-   <center> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe3XOWFt0Dz3-UsPhsl6LywSb1tFhx8cInE4y9vZww2w&s" alt="Spring Boot" width="300" height="100"></center>
+   <center> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe3XOWFt0Dz3-UsPhsl6LywSb1tFhx8cInE4y9vZww2w&s" alt="Spring Boot" width="300" height="150"></center>
      
    *Flask* is a lightweight WSGI web application framework in Python. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
@@ -226,9 +235,3 @@ First, you need to clone the repository:
    The Web App will be running on `http://127.0.0.1:5000`.
 
    You can now draw the shapes and see the predictions.
-
-- ## Quick Demo
-   Here is a quick demo of the Web App:
-
-   ![App demo](imgs_for_notebooks/demo.gif)
-   
