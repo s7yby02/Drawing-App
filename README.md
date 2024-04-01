@@ -228,4 +228,6 @@ First, you need to clone the repository:
 
 - ## Quick Demo
    Here is a quick demo of the Web App:
+
+   ![App demo](imgs_for_notebooks/demo.gif)
    
