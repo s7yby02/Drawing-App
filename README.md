@@ -38,7 +38,10 @@ The app is built using Flask python framework for the backend and HTML, CSS, and
 
 ### Quick Demo
 #### Here is a quick demo of the Web App:
-   ![App demo](imgs_for_notebooks/demo.gif)
+   <p align="center">
+      <img src="imgs_for_notebooks/demo.gif" width="700">
+   </p>
+
 
 ### Project Structure
 The project is structured as follows:
