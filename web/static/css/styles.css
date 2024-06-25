@@ -4,7 +4,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    background-image: url(back2.jpg);
+    background-image: url(../images/back2.jpg);
     background-size: 105%;
     overscroll-behavior: none;   
 }
@@ -13,7 +13,7 @@ body {
     body {
         background-size: 126%;
         /* background-repeat: no-repeat; */
-        background-image: url(back2vertical.jpg);
+        background-image: url(../images/back2vertical.jpg);
     }
 }
 

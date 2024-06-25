@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request
 from PIL import Image
 import numpy as np
-import io
+import os
 import tensorflow as tf
 import cv2
 
 app = Flask(__name__)
+model_path = os.path.join(os.getcwd(), 'web/Model')
+model = tf.keras.models.load_model(model_path)
 
 @app.route('/', methods = ['GET'])
 def index():
@@ -51,5 +53,4 @@ def preprocess(image):
     return image_reshaped
 
 if __name__ == '__main__':
-    model = tf.keras.models.load_model('the model')
     app.run(debug=True)
